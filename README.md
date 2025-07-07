@@ -15,10 +15,28 @@ The app works out of the box on local environments like my other project, [**Web
 
 ## Setup Guide: ##
 
-download the composer to the phone
-pkg install composer
- 
-install PHPMailer with composer: composer require phpmailer/phpmailer
-or download it from github https://github.com/PHPMailer/PHPMailer
+**1 .** Prepare the PC (`or other`) environment  
+(Tested on Ubuntu 22.04 “Jammy”, should work on any Debian‑based distro)
+
+`sudo apt update`
+
+`sudo apt install php php-cli php-mbstring php-xml` -> PHP environment
+
+`sudo apt install mariadb-server mariadb-client php-mysql` -> MariaDB environment
+
+`sudo apt install composer` -> Composer (PHP Dependency manager) for installing PHPMailer
+
+`composer require phpmailer/phpmailer` -> for installing PHPMailer
+*Alternatively* [Download](https://github.com/PHPMailer/PHPMailer)
+Unzip and place the PHPMailer/src folder in private/PHPMailer/.
+
+**2.** Clone this repository for the prepared code environment
+
+**3.** Configure the database connection
+private/db.inc.php -> 
+
+
+
+
 
 creathe an accout by an SMTP  (Simple Mail Transfer Protocol) Provider like Brevo.
