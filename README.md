@@ -6,17 +6,20 @@ It was created as a personal learning project to explore PHP, CRUD operations, a
 
 The app works out of the box on local environments like my other project, [**Webserver-Rethink**](https://github.com/Tyomus/Webserver-rethink) or can be embedded into any website.
 
+![Screenshot at 2025-07-07 18-31-07](https://github.com/user-attachments/assets/24b807b9-eb16-4bcd-bd33-6074c1c3e912)
+
+
 ## Features ##
 
 - Add, edit, and delete reminders (CRUD)
-- Each reminder includes: title, description, due date, notice date, and email (for the reminder to be send to).
-- [**PHPMailer**](https://github.com/PHPMailer/PHPMailer) for the SMTP email sending
+- In this current release each reminder includes: title, description, due date, notice date, and email (for the reminder to be send to).
+- [**PHPMailer**](https://github.com/PHPMailer/PHPMailer) as a mailer extention for PHP for the SMTP email sending
 - Lightweight setup – no external dependencies required beyond an SMTP provider
 
 ## Setup Guide: ##
 
 **1 .** Prepare the PC (`or other`) environment  
-(Tested on Ubuntu 22.04 “Jammy”, should work on any Debian‑based distro)
+(Tested on Ubuntu 24.04 “Noble”, should work on any Debian‑based distro)
 
 `sudo apt update`
 
@@ -32,11 +35,36 @@ Unzip and place the PHPMailer/src folder in private/PHPMailer/.
 
 **2.** Clone this repository for the prepared code environment
 
-**3.** Configure the database connection
-private/db.inc.php -> 
+**3.** Configure the database connection:
+
+      - private/db.inc.php
+      
+      - use the "reminders.sql" Dump file for the table structure
+        
+**4.** SMTP (Simple Mail Transfer Protocol) setup
+
+PHP's built-in `mail()` function isn't reliable on most systems because:
+
+        - It lacks proper authentication
+
+        - It often gets flagged as spam
+
+That's why this app uses PHPMailer with a trusted SMTP provider.
+The provider (like [Brevo](https://developers.brevo.com/docs/smtp-integration), [SMTP2GO](https://www.smtp2go.com/tour/), or [Gmail](https://developers.google.com/workspace/gmail/imap/imap-smtp)) handles the actual email delivery securely and ensures your messages reach their destination without being marked as junk.
+
+In this project, you configure PHPMailer with your SMTP provider’s credentials, and it sends the reminder emails on your behalf.
+(I was choosing Brevo for it's outstanding [setup guide](https://developers.brevo.com/docs/smtp-integration) and it allows you to send out freely 300Mails/Day which is more than enough for this project)
+
+**5.** Configure mailing (SMTP)
+      -> private/mailer.php (Replace the placeholders with your SMTP credentials)
+
+**6.** Start the local server (in this chase PHP's built-in server)
+      `php -S 127.0.0.1:8000` (or with port 8080 with the [Phone-Webserver](https://github.com/Tyomus/Webserver-rethink) solution)
+
+**7.** Browse to `http://127.0.0.1:8000` or `http://localhost:8000` and you are free to use the app and it's features.
 
 
+## Planned improvements ##
 
-
-
-creathe an accout by an SMTP  (Simple Mail Transfer Protocol) Provider like Brevo.
+  - Google Calendar [API](https://developers.google.com/workspace/calendar/api/guides/overview) sync
+  - Responsive UI (CSS)
