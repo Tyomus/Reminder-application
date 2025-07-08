@@ -30,18 +30,15 @@ The app works out of the box on local environments like my other project, [**Web
 `sudo apt install composer` -> Composer (PHP Dependency manager) for installing PHPMailer
 
 `composer require phpmailer/phpmailer` -> for installing PHPMailer
-*Alternatively* [Download](https://github.com/PHPMailer/PHPMailer)
-Unzip and place the PHPMailer/src folder in private/PHPMailer/.
+or *Alternatively* [Download](https://github.com/PHPMailer/PHPMailer) and place it into the `private/PHPMailer/` folder.
 
 **2.** Clone this repository for the prepared code environment
 
 **3.** Configure the database connection:
-
-      - private/db.inc.php
-      
-      - use the "reminders.sql" Dump file for the table structure
+- private/db.inc.php (complete it with your database credentials)
+- use the "reminders.sql" Dump file for the table structure
         
-**4.** SMTP (Simple Mail Transfer Protocol) setup
+**4.** SMTP (Simple Mail Transfer Protocol) setup:
 
 PHP's built-in `mail()` function isn't reliable on most systems because:
 
@@ -55,13 +52,16 @@ The provider (like [Brevo](https://developers.brevo.com/docs/smtp-integration), 
 In this project, you configure PHPMailer with your SMTP provider’s credentials, and it sends the reminder emails on your behalf.
 (I was choosing Brevo for it's outstanding [setup guide](https://developers.brevo.com/docs/smtp-integration) and it allows you to send out freely 300Mails/Day which is more than enough for this project)
 
-**5.** Configure mailing (SMTP)
-      -> private/mailer.php (Replace the placeholders with your SMTP credentials)
+**5.** Configure mailing (SMTP):
 
-**6.** Start the local server (in this chase PHP's built-in server)
+- Replace the placeholders with your SMTP credentials in the `private/mailer.php` file.
+
+**6.** Start the local server (in this chase a PHP built-in server)
       `php -S 127.0.0.1:8000` (or with port 8080 with the [Phone-Webserver](https://github.com/Tyomus/Webserver-rethink) solution)
 
-**7.** Browse to `http://127.0.0.1:8000` or `http://localhost:8000` and you are free to use the app and it's features.
+**7.** Start using the Application
+
+Browse to `http://127.0.0.1:8000` or `http://localhost:8000` and you are free to use the app and it's features.
 
 
 ## Planned improvements ##
